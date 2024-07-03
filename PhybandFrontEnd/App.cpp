@@ -14,6 +14,9 @@ bool App::OnInit()
     mainFrame->Center();
     mainFrame->Show();
 
+    //Add more image types
+    wxInitAllImageHandlers();
+
     //Start program
     return true;
 }
