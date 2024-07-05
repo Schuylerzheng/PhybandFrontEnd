@@ -50,9 +50,9 @@ void MainFrame::CreateControls()
 	welcomeText->SetFont(titleFont);
 
 	//Create quik controls
-	systemQuikControl = new wxButton(panel, wxID_ANY, "About", wxPoint(quikControlGap * 1, 500), quikControlSize);
-	aboutNavigationButton = new wxButton(panel, wxID_ANY, "About", wxPoint(quikControlGap * 2, 500), quikControlSize);
-	aboutNavigationButton = new wxButton(panel, wxID_ANY, "About", wxPoint(quikControlGap * 3, 500), quikControlSize);
+	systemQuikControl = new wxButton(panel, wxID_ANY, "system", wxPoint(quikControlGap * 1, 500), quikControlSize);
+	healthQuikControl = new wxButton(panel, wxID_ANY, "health", wxPoint(quikControlGap * 2, 500), quikControlSize);
+	aboutQuikControl = new wxButton(panel, wxID_ANY, "about", wxPoint(quikControlGap * 3, 500), quikControlSize);
 }
 
 void MainFrame::BindControls()
@@ -66,7 +66,7 @@ void MainFrame::BindControls()
 
 	//Bind tab specific controls
 	systemQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
-	HealthQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
+	healthQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
 	aboutQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
 }
 
@@ -115,6 +115,7 @@ void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
 }
 
 //Tab specific controls
+
 
 //****************
 //HELPER FUNCTIONS

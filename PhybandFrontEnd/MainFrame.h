@@ -43,8 +43,8 @@ private:
 
 	//Tab specific controls
 	wxStaticText* welcomeText;
+	wxButton* healthQuikControl;
 	wxButton* systemQuikControl;
-	wxButton* HealthQuikControl;
 	wxButton* aboutQuikControl;
 
 	//Navigation controls
