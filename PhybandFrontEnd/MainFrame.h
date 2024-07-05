@@ -13,9 +13,9 @@ private:
 	//***************
 	void CreateControls();
 
-	//***************
+	//****************
 	//HELPER FUNCTIONS
-	//***************
+	//****************
 	void SwitchToTab(std::string tabToSwitchTo);
 
 	//********
