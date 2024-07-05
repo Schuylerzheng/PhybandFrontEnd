@@ -27,6 +27,9 @@ private:
 	void OnSystemNavigaionPressed(wxCommandEvent& evt);
 	void OnAboutNavigaionPressed(wxCommandEvent& evt);
 
+	//For tab specific controls
+	
+
 	//****************
 	//HELPER FUNCTIONS
 	//****************
@@ -38,7 +41,7 @@ private:
 	wxPanel* panel;
 	wxButton* testButton;
 
-	//Dashboard tab specific controls
+	//Tab specific controls
 	wxStaticText* welcomeText;
 	wxButton* systemQuikControl;
 	wxButton* HealthQuikControl;

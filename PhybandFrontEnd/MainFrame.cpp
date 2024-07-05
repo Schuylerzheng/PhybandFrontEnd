@@ -63,6 +63,11 @@ void MainFrame::BindControls()
 	doctorsNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnDoctorsNavigaionPressed, this);
 	systemNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
 	aboutNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
+
+	//Bind tab specific controls
+	systemQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
+	HealthQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
+	aboutQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
 }
 
 void MainFrame::SetupSizers()
@@ -78,6 +83,7 @@ void MainFrame::SetupSizers()
 //CONTROL FUNCTIONS
 //*****************
 
+//Navigation controls
 void MainFrame::OnTestButtonPressed(wxCommandEvent& evt)
 {
 	wxLogMessage("Test button pressed");
@@ -107,6 +113,8 @@ void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
 {
 	SwitchToTab("about");
 }
+
+//Tab specific controls
 
 //****************
 //HELPER FUNCTIONS
