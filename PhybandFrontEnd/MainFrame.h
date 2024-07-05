@@ -12,6 +12,20 @@ private:
 	//SETUP FUNCTIONS
 	//***************
 	void CreateControls();
+	void BindControls();
+	void SetupSizers();
+
+	//*****************
+	//CONTROL FUNCTIONS
+	//*****************
+	void OnTestButtonPressed(wxCommandEvent& evt);
+	 
+	//For navigation controls
+	void OnDashboardNavigaionPressed(wxCommandEvent& evt);
+	void OnHealthNavigaionPressed(wxCommandEvent& evt);
+	void OnDoctorsNavigaionPressed(wxCommandEvent& evt);
+	void OnSystemNavigaionPressed(wxCommandEvent& evt);
+	void OnAboutNavigaionPressed(wxCommandEvent& evt);
 
 	//****************
 	//HELPER FUNCTIONS
@@ -22,6 +36,7 @@ private:
 	//CONTROLS
 	//********
 	wxPanel* panel;
+	wxButton* testButton;
 
 	//Dashboard tab specific controls
 	wxStaticText* welcomeText;
