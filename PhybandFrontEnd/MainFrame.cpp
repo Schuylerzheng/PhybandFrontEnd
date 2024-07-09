@@ -39,30 +39,30 @@ void MainFrame::CreateControls()
 	testButton->Show(false);
 
 	//Create naviagtion controls
-	dashboardNavigationButton = new wxButton(panel, wxID_ANY, "Dashboard", wxPoint(navigationGap * 0, 0), navigationControlSize);
-	healthNavigationButton = new wxButton(panel, wxID_ANY, "Health", wxPoint(navigationGap * 1, 0), navigationControlSize);
-	doctorsNavigationButton = new wxButton(panel, wxID_ANY, "Doctors", wxPoint(navigationGap * 2, 0), navigationControlSize);
-	systemNavigationButton = new wxButton(panel, wxID_ANY, "Systems", wxPoint(navigationGap * 3, 0), navigationControlSize);
-	aboutNavigationButton = new wxButton(panel, wxID_ANY, "About", wxPoint(navigationGap * 4, 0), navigationControlSize);
+	dashboardNavigationControl = new wxButton(panel, wxID_ANY, "Dashboard", wxPoint(navigationGap * 0, 0), navigationControlSize);
+	healthNavigationControl = new wxButton(panel, wxID_ANY, "Health", wxPoint(navigationGap * 1, 0), navigationControlSize);
+	doctorsNavigationControl = new wxButton(panel, wxID_ANY, "Doctors", wxPoint(navigationGap * 2, 0), navigationControlSize);
+	systemNavigationControl = new wxButton(panel, wxID_ANY, "Systems", wxPoint(navigationGap * 3, 0), navigationControlSize);
+	aboutNavigationControl = new wxButton(panel, wxID_ANY, "About", wxPoint(navigationGap * 4, 0), navigationControlSize);
 
 	//Create some welcome text for the dashboard and set its font
 	welcomeText = new wxStaticText(panel, wxID_ANY, "Welcome! Have a look around!", wxPoint(0, 250), wxSize(800, -1), wxALIGN_CENTER);
 	welcomeText->SetFont(titleFont);
 
 	//Create quik controls
-	systemQuikControl = new wxButton(panel, wxID_ANY, "system", wxPoint(quikControlGap * 1, 500), quikControlSize);
-	healthQuikControl = new wxButton(panel, wxID_ANY, "health", wxPoint(quikControlGap * 2, 500), quikControlSize);
-	aboutQuikControl = new wxButton(panel, wxID_ANY, "about", wxPoint(quikControlGap * 3, 500), quikControlSize);
+	systemQuikControl = new wxButton(panel, wxID_ANY, "system");
+	healthQuikControl = new wxButton(panel, wxID_ANY, "health");
+	aboutQuikControl = new wxButton(panel, wxID_ANY, "about");
 }
 
 void MainFrame::BindControls()
 {
 	//Bind navigation controls
-	dashboardNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnDashboardNavigaionPressed, this);
-	healthNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
-	doctorsNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnDoctorsNavigaionPressed, this);
-	systemNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
-	aboutNavigationButton->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
+	dashboardNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnDashboardNavigaionPressed, this);
+	healthNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
+	doctorsNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnDoctorsNavigaionPressed, this);
+	systemNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
+	aboutNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
 
 	//Bind tab specific controls
 	systemQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
@@ -73,10 +73,37 @@ void MainFrame::BindControls()
 void MainFrame::SetupSizers()
 {
 	//Create sizers
-	wxBoxSizer* mainSizer;
-	wxBoxSizer* navigationControlsSizer;
+	wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* navigationControlsSizer = new wxBoxSizer(wxHORIZONTAL);
+	wxGridSizer* outputSizer = new wxGridSizer(1);
 	//Navigation tab specific sizers
-	wxBoxSizer* dashboardQuikControlSizer;
+	wxBoxSizer* dashboardSizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* dashboardQuikControlSizer = new wxBoxSizer(wxHORIZONTAL);
+
+	//Add items to dashboardQuikControlSizer
+	dashboardQuikControlSizer->Add(healthQuikControl);
+	dashboardQuikControlSizer->Add(systemQuikControl);
+	dashboardQuikControlSizer->Add(aboutQuikControl);
+	//Add items to dashboardSizer
+	dashboardSizer->AddSpacer(50);
+	dashboardSizer->Add(welcomeText, wxSizerFlags().Proportion(1).CenterHorizontal());
+	dashboardSizer->AddSpacer(50);
+	dashboardSizer->Add(dashboardQuikControlSizer, wxSizerFlags().CenterHorizontal());
+
+	//Add items to navigationControlSizer
+	navigationControlsSizer->Add(dashboardNavigationControl, wxSizerFlags().Proportion(1));
+	navigationControlsSizer->Add(healthNavigationControl, wxSizerFlags().Proportion(1));
+	navigationControlsSizer->Add(doctorsNavigationControl, wxSizerFlags().Proportion(1));
+	navigationControlsSizer->Add(systemNavigationControl, wxSizerFlags().Proportion(1));
+	navigationControlsSizer->Add(aboutNavigationControl, wxSizerFlags().Proportion(1));
+	//Add items to mainSizer
+	mainSizer->Add(navigationControlsSizer, wxSizerFlags().Expand());
+	//Add items to outputSizer
+	outputSizer->Add(mainSizer, wxSizerFlags().Expand());
+
+	//Apply output sizer as the main sizer
+	panel->SetSizer(outputSizer);
+	outputSizer->SetSizeHints(this);
 }
 
 //*****************

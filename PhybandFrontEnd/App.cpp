@@ -7,7 +7,7 @@ wxIMPLEMENT_APP(App);
 bool App::OnInit()
 {
     //Make mainFrame
-    MainFrame* mainFrame = new MainFrame("To-Do List");
+    MainFrame* mainFrame = new MainFrame("Phyband Control Center");
 
     //Set settings for mainFrame
     mainFrame->SetClientSize(800, 600);

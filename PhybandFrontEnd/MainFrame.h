@@ -48,10 +48,10 @@ private:
 	wxButton* aboutQuikControl;
 
 	//Navigation controls
-	wxButton* dashboardNavigationButton;
-	wxButton* healthNavigationButton;
-	wxButton* doctorsNavigationButton;
-	wxButton* systemNavigationButton;
-	wxButton* aboutNavigationButton;
+	wxButton* dashboardNavigationControl;
+	wxButton* healthNavigationControl;
+	wxButton* doctorsNavigationControl;
+	wxButton* systemNavigationControl;
+	wxButton* aboutNavigationControl;
 };
 
