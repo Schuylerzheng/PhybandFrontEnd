@@ -144,10 +144,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Device.h" />
+    <ClInclude Include="DeviceStats.h" />
     <ClInclude Include="MainFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="Device.cpp" />
+    <ClCompile Include="DeviceStats.cpp" />
     <ClCompile Include="MainFrame.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

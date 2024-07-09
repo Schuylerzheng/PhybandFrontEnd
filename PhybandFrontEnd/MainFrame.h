@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
+#include <string>
 
 class MainFrame : public wxFrame
 {
@@ -8,6 +9,15 @@ public:
 	//MainFrame constructor
 	MainFrame(const wxString& title);
 private:
+	//*********
+	//VARIABLES
+	//*********
+	//Devices
+	
+
+	//Windows
+	std::string currentWindow = "Dashboard";
+
 	//***************
 	//SETUP FUNCTIONS
 	//***************
