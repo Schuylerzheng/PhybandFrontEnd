@@ -70,8 +70,9 @@ void MainFrame::SetupSizers()
 	wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* navigationControlsSizer = new wxBoxSizer(wxHORIZONTAL);
 	wxGridSizer* outputSizer = new wxGridSizer(1);
+	dynamicSizer = new wxBoxSizer(wxVERTICAL);
 	//Navigation tab specific sizers
-	wxBoxSizer* dashboardSizer = new wxBoxSizer(wxVERTICAL);
+	dashboardSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* dashboardQuikControlSizer = new wxBoxSizer(wxHORIZONTAL);
 
 	//Add items to navigationControlSizer
@@ -91,9 +92,12 @@ void MainFrame::SetupSizers()
 	dashboardSizer->AddSpacer(25);
 	dashboardSizer->Add(dashboardQuikControlSizer, wxSizerFlags().CenterHorizontal());
 
+	//Add items to dynamicSizer
+	dynamicSizer->Add(dashboardSizer, wxSizerFlags().Expand());
+
 	//Add items to mainSizer
 	mainSizer->Add(navigationControlsSizer, wxSizerFlags().Expand());
-	mainSizer->Add(dashboardSizer, wxSizerFlags().Expand());
+	mainSizer->Add(dynamicSizer, wxSizerFlags().Expand());
 	//Add items to outputSizer
 	outputSizer->Add(mainSizer, wxSizerFlags().Expand());
 
@@ -114,27 +118,27 @@ void MainFrame::OnTestButtonPressed(wxCommandEvent& evt)
 
 void MainFrame::OnDashboardNavigaionPressed(wxCommandEvent& evt)
 {
-	SwitchToTab("dashboard");
+	SwitchToTab(0);
 }
 
 void MainFrame::OnHealthNavigaionPressed(wxCommandEvent& evt)
 {
-	SwitchToTab("health");
+	SwitchToTab(1);
 }
 
 void MainFrame::OnDoctorsNavigaionPressed(wxCommandEvent& evt)
 {
-	SwitchToTab("doctors");
+	SwitchToTab(2);
 }
 
 void MainFrame::OnSystemNavigaionPressed(wxCommandEvent& evt)
 {
-	SwitchToTab("system");
+	SwitchToTab(3);
 }
 
 void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
 {
-	SwitchToTab("about");
+	SwitchToTab(4);
 }
 
 //Tab specific controls
@@ -144,10 +148,21 @@ void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
 //HELPER FUNCTIONS
 //****************
 
-void MainFrame::SwitchToTab(std::string tabToSwitchTo)
+void MainFrame::SwitchToTab(int tabToSwitchTo)
 {
-	std::string formatedString = std::format("[Insert {} tab here]", tabToSwitchTo);
-	wxString outputString = formatedString;
-	
-	wxLogMessage(outputString);
+	//Remove currentWindow
+	switch (currentWindow) {
+		case 0:
+			dynamicSizer->Clear(true);
+			this->SetSizer(NULL, true);
+	}
+
+	//Add tabToSwitchTo
+	switch (tabToSwitchTo) {
+		case 0:
+			dynamicSizer->Add(dashboardSizer);
+	}
+
+	//Set the current window to tabToSwitchTo
+	currentWindow = tabToSwitchTo;
 }

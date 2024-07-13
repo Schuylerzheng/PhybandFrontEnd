@@ -16,7 +16,13 @@ private:
 	
 
 	//Windows
-	std::string currentWindow = "Dashboard";
+	//*******WINDOW TABLE*******
+	//0 = dash
+	//1 = health
+	//2 = doctors
+	//3 = system
+	//4 = about
+	int currentWindow = 0;
 
 	//***************
 	//SETUP FUNCTIONS
@@ -43,13 +49,20 @@ private:
 	//****************
 	//HELPER FUNCTIONS
 	//****************
-	void SwitchToTab(std::string tabToSwitchTo);
+	void SwitchToTab(int tabToSwitchTo);
 
 	//********
 	//CONTROLS
 	//********
 	wxPanel* panel;
 	wxButton* testButton;
+
+	//Dynamic Sizers
+	wxBoxSizer* dynamicSizer;
+
+	//Window sizers
+	wxBoxSizer* dashboardSizer;
+	
 
 	//Tab specific controls
 	wxStaticText* welcomeText;
