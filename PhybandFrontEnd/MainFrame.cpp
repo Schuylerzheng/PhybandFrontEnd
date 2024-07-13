@@ -39,14 +39,25 @@ void MainFrame::CreateControls()
 	systemNavigationControl = new wxButton(panel, wxID_ANY, "Systems");
 	aboutNavigationControl = new wxButton(panel, wxID_ANY, "About");
 
-	//Create some welcome text for the dashboard and set its font
+	//Create dashboard controls
 	welcomeText = new wxStaticText(panel, wxID_ANY, "Welcome! Have a look around!");
 	welcomeText->SetFont(titleFont);
-
 	//Create quik controls
 	systemQuikControl = new wxButton(panel, wxID_ANY, "system");
 	healthQuikControl = new wxButton(panel, wxID_ANY, "health");
 	aboutQuikControl = new wxButton(panel, wxID_ANY, "about");
+
+	//Create health controls
+	healthTestText = new wxStaticText(panel, wxID_ANY, "HEALTH TEST TEXT");
+
+	//Create doctors controls
+	doctorsTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
+
+	//Create system controls
+	systemTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
+
+	//Create about controls
+	aboutTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
 }
 
 void MainFrame::BindControls()
@@ -74,6 +85,14 @@ void MainFrame::SetupSizers()
 	//Navigation tab specific sizers
 	dashboardSizer = new wxBoxSizer(wxVERTICAL);
 	wxBoxSizer* dashboardQuikControlSizer = new wxBoxSizer(wxHORIZONTAL);
+	//Health tab sizers
+	healthSizer = new wxBoxSizer(wxVERTICAL);
+	//Doctors tab sizer
+	doctorsSizer = new wxBoxSizer(wxVERTICAL);
+	//System tab sizer
+	systemSizer = new wxBoxSizer(wxVERTICAL);
+	//About tab sizer
+	aboutSizer = new wxBoxSizer(wxVERTICAL);
 
 	//Add items to navigationControlSizer
 	navigationControlsSizer->Add(dashboardNavigationControl, wxSizerFlags().Proportion(1));
@@ -91,6 +110,27 @@ void MainFrame::SetupSizers()
 	dashboardSizer->Add(welcomeText, wxSizerFlags().CenterHorizontal());
 	dashboardSizer->AddSpacer(25);
 	dashboardSizer->Add(dashboardQuikControlSizer, wxSizerFlags().CenterHorizontal());
+
+	//Add items to healthSizer
+	healthSizer->Add(healthTestText, wxSizerFlags().CenterHorizontal());
+
+	//Add items to doctorsSizer
+	doctorsSizer->Add(doctorsTestText, wxSizerFlags().CenterHorizontal());
+
+	//Add items to systemSizer
+	systemSizer->Add(systemTestText, wxSizerFlags().CenterHorizontal());
+
+	//Add items to aboutSizer
+	aboutSizer->Add(aboutTestText, wxSizerFlags().CenterHorizontal());
+
+	//Show dashboardSizer
+	dashboardSizer->Show(true);
+
+	//Hide other window sizers
+	healthSizer->Show(false);
+	doctorsSizer->Show(false);
+	systemSizer->Show(false);
+	aboutSizer->Show(false);
 
 	//Add items to dynamicSizer
 	dynamicSizer->Add(dashboardSizer, wxSizerFlags().Expand());

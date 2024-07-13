@@ -62,13 +62,28 @@ private:
 
 	//Window sizers
 	wxBoxSizer* dashboardSizer;
-	
+	wxBoxSizer* healthSizer;
+	wxBoxSizer* doctorsSizer;
+	wxBoxSizer* systemSizer;
+	wxBoxSizer* aboutSizer;
 
-	//Tab specific controls
+	//Navigation tab controls
 	wxStaticText* welcomeText;
 	wxButton* healthQuikControl;
 	wxButton* systemQuikControl;
 	wxButton* aboutQuikControl;
+
+	//Health tab controls
+	wxStaticText* healthTestText;
+
+	//Doctors tab controls
+	wxStaticText* doctorsTestText;
+
+	//System tab controls
+	wxStaticText* systemTestText;
+
+	//About tab contorls
+	wxStaticText* aboutTestText;
 
 	//Navigation controls
 	wxButton* dashboardNavigationControl;
