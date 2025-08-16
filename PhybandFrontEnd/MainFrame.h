@@ -2,6 +2,9 @@
 
 #include <wx/wx.h>
 #include <string>
+#include <vector>
+#include "EWindows.h"
+#include "DeviceStats.h"
 
 class MainFrame : public wxFrame
 {
@@ -13,7 +16,7 @@ private:
 	//VARIABLES
 	//*********
 	//Devices
-	
+	//DeviceStats Devices[];	
 
 	//Windows
 	//*******WINDOW TABLE*******
@@ -22,7 +25,7 @@ private:
 	//2 = doctors
 	//3 = system
 	//4 = about
-	int currentWindow = 0;
+	int currentWindow = EWindows::Dashboard;
 
 	//***************
 	//SETUP FUNCTIONS

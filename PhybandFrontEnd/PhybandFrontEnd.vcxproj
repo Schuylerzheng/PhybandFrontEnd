@@ -59,19 +59,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\wxwidgets.props" />
+    <Import Project="$(wxWidgetsPath)\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\wxwidgets.props" />
+    <Import Project="$(wxWidgetsPath)\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\wxwidgets.props" />
+    <Import Project="$(wxWidgetsPath)\wxwidgets.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\..\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\wxwidgets.props" />
+    <Import Project="$(wxWidgetsPath)\wxwidgets.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -80,14 +80,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include\msvc;C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(wxWidgetsPath)\include\msvc;$(wxWidgetsPath)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\lib\vc_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(wxWidgetsPath)\lib\vc_lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,7 +98,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include\msvc;C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(wxWidgetsPath)\include\msvc;$(wxWidgetsPath)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -107,7 +107,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\lib\vc_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(wxWidgetsPath)\lib\vc_lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,14 +116,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include\msvc;C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(wxWidgetsPath)\include\msvc;$(wxWidgetsPath)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\lib\vc_x64_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(wxWidgetsPath)\lib\vc_x64_lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include\msvc;C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(wxWidgetsPath)\include\msvc;$(wxWidgetsPath)\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
@@ -143,13 +143,14 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Schuy\OneDrive\Documents\Visual Studio Libraries\wxWidgets-3.2.8\lib\vc_x64_lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(wxWidgetsPath)\lib\vc_x64_lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="DeviceStats.h" />
+    <ClInclude Include="EWindows.h" />
     <ClInclude Include="MainFrame.h" />
   </ItemGroup>
   <ItemGroup>
