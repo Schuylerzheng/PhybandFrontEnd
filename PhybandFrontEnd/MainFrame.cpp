@@ -10,6 +10,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 {
 	//Run setup functions
 	CreateControls();
+	MakeNotebookTabs();
 	BindControls();
 	SetupSizers();
 }
@@ -18,15 +19,38 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title)
 //SETUP FUNCTIONS
 //***************
 
+void MainFrame::MakeNotebookTabs()
+{
+	// Set the value for the notebook
+	MainTabs = new wxNotebook(this, wxID_ANY);
+
+	// Set the values for the tabs
+	Health = new wxPanel(MainTabs, wxID_ANY);
+	Doctors = new wxPanel(MainTabs, wxID_ANY);
+	System = new wxPanel(MainTabs, wxID_ANY);
+	About = new wxPanel(MainTabs, wxID_ANY);
+
+	// Set up Dashboard
+	Dashboard = new wxPanel(MainTabs, wxID_ANY);
+	DashboardPanel = new wxPanel(Dashboard, wxID_ANY);
+	DashboardSizer = new wxBoxSizer(wxVERTICAL);
+	WelcomeText = new wxStaticText(DashboardPanel, wxID_ANY, "Welcome! Have a look around!");
+	WelcomeText->SetFont(TitleFont);
+	SystemQuikControl = new wxButton(DashboardPanel, wxID_ANY, "System");
+	HealthQuikControl = new wxButton(DashboardPanel, wxID_ANY, "Health");
+	AboutQuikControl = new wxButton(DashboardPanel, wxID_ANY, "About");
+	DashboardPanel->SetSizer(DashboardSizer);
+	DashboardSizer->Add(WelcomeText);
+	DashboardSizer->Add(SystemQuikControl);
+	DashboardSizer->Add(HealthQuikControl);
+	DashboardSizer->Add(AboutQuikControl);
+}
+
 void MainFrame::CreateControls()
 {
-	//Create fonts
-	wxFont titleFont(wxFontInfo(wxSize(0, 52)).Bold());
-	wxFont mainFont(wxFontInfo(wxSize(0, 24)));
-
 	//Create a panel and give it some settings
 	panel = new wxPanel(this);
-	panel->SetFont(mainFont);
+	panel->SetFont(MainFont);
 
 	//Create test button
 	testButton = new wxButton(panel, wxID_ANY, "TEST");
@@ -39,24 +63,10 @@ void MainFrame::CreateControls()
 	systemNavigationControl = new wxButton(panel, wxID_ANY, "Systems");
 	aboutNavigationControl = new wxButton(panel, wxID_ANY, "About");
 
-	//Create dashboard controls
-	welcomeText = new wxStaticText(panel, wxID_ANY, "Welcome! Have a look around!");
-	welcomeText->SetFont(titleFont);
-	//Create quik controls
-	systemQuikControl = new wxButton(panel, wxID_ANY, "system");
-	healthQuikControl = new wxButton(panel, wxID_ANY, "health");
-	aboutQuikControl = new wxButton(panel, wxID_ANY, "about");
-
 	//Create health controls
 	healthTestText = new wxStaticText(panel, wxID_ANY, "HEALTH TEST TEXT");
-
-	//Create doctors controls
 	doctorsTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
-
-	//Create system controls
 	systemTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
-
-	//Create about controls
 	aboutTestText = new wxStaticText(panel, wxID_ANY, "DOCTORS TEST TEXT");
 }
 
@@ -70,9 +80,9 @@ void MainFrame::BindControls()
 	aboutNavigationControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
 
 	//Bind tab specific controls
-	systemQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
-	healthQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
-	aboutQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
+	SystemQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnSystemNavigaionPressed, this);
+	HealthQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnHealthNavigaionPressed, this);
+	AboutQuikControl->Bind(wxEVT_BUTTON, &MainFrame::OnAboutNavigaionPressed, this);
 }
 
 void MainFrame::SetupSizers()
@@ -100,16 +110,6 @@ void MainFrame::SetupSizers()
 	navigationControlsSizer->Add(doctorsNavigationControl, wxSizerFlags().Proportion(1));
 	navigationControlsSizer->Add(systemNavigationControl, wxSizerFlags().Proportion(1));
 	navigationControlsSizer->Add(aboutNavigationControl, wxSizerFlags().Proportion(1));
-
-	//Add items to dashboardQuikControlSizer
-	dashboardQuikControlSizer->Add(healthQuikControl, wxSizerFlags().Proportion(1));
-	dashboardQuikControlSizer->Add(systemQuikControl, wxSizerFlags().Proportion(1));
-	dashboardQuikControlSizer->Add(aboutQuikControl, wxSizerFlags().Proportion(1));
-	//Add items to dashboardSizer
-	dashboardSizer->AddSpacer(150);
-	dashboardSizer->Add(welcomeText, wxSizerFlags().CenterHorizontal());
-	dashboardSizer->AddSpacer(25);
-	dashboardSizer->Add(dashboardQuikControlSizer, wxSizerFlags().CenterHorizontal());
 
 	//Add items to healthSizer
 	healthSizer->Add(healthTestText, wxSizerFlags().CenterHorizontal());
@@ -150,38 +150,6 @@ void MainFrame::SetupSizers()
 //CONTROL FUNCTIONS
 //*****************
 
-//Navigation controls
-void MainFrame::OnTestButtonPressed(wxCommandEvent& evt)
-{
-	wxLogMessage("Test button pressed");
-}
-
-void MainFrame::OnDashboardNavigaionPressed(wxCommandEvent& evt)
-{
-	SwitchToTab(0);
-}
-
-void MainFrame::OnHealthNavigaionPressed(wxCommandEvent& evt)
-{
-	SwitchToTab(1);
-}
-
-void MainFrame::OnDoctorsNavigaionPressed(wxCommandEvent& evt)
-{
-	SwitchToTab(2);
-}
-
-void MainFrame::OnSystemNavigaionPressed(wxCommandEvent& evt)
-{
-	SwitchToTab(3);
-}
-
-void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
-{
-	SwitchToTab(4);
-}
-
-//Tab specific controls
 
 
 //****************
@@ -190,19 +158,5 @@ void MainFrame::OnAboutNavigaionPressed(wxCommandEvent& evt)
 
 void MainFrame::SwitchToTab(int tabToSwitchTo)
 {
-	//Remove currentWindow
-	switch (currentWindow) {
-		case 0:
-			dynamicSizer->Clear(true);
-			this->SetSizer(NULL, true);
-	}
-
-	//Add tabToSwitchTo
-	switch (tabToSwitchTo) {
-		case 0:
-			dynamicSizer->Add(dashboardSizer);
-	}
-
-	//Set the current window to tabToSwitchTo
-	currentWindow = tabToSwitchTo;
+	
 }

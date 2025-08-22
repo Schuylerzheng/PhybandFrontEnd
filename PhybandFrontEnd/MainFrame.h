@@ -1,6 +1,7 @@
 #pragma once
 
 #include <wx/wx.h>
+#include <wx/notebook.h>
 #include <string>
 #include <vector>
 #include "EWindows.h"
@@ -11,25 +12,50 @@ class MainFrame : public wxFrame
 public:
 	//MainFrame constructor
 	MainFrame(const wxString& title);
-private:
+
+protected:
 	//*********
 	//VARIABLES
 	//*********
 	//Devices
-	//DeviceStats Devices[];	
+	//DeviceStats Devices[];
 
-	//Windows
-	//*******WINDOW TABLE*******
-	//0 = dash
-	//1 = health
-	//2 = doctors
-	//3 = system
-	//4 = about
-	int currentWindow = EWindows::Dashboard;
+	// Create the notebook
+	wxNotebook* MainTabs;
+
+	/* Dashboard */
+	wxPanel* Dashboard;
+	wxPanel* DashboardPanel;
+	wxBoxSizer* DashboardSizer;
+	wxStaticText* WelcomeText;
+	wxButton* SystemQuikControl;
+	wxButton* HealthQuikControl;
+	wxButton* AboutQuikControl;
+
+	/* Health */
+	wxPanel* Health;
+	wxPanel* HealthPanel;
+	wxBoxSizer* HealthSizer;
+
+	/* Doctors */
+	wxPanel* Doctors;
+	wxPanel* DoctorsPanel;
+	wxBoxSizer* DoctorsSizer;
+
+	/* System */
+	wxPanel* System;
+	wxPanel* SystemPanel;
+	wxBoxSizer* SystemSizer;
+
+	/* About */
+	wxPanel* About;
+	wxPanel* AboutPanel;
+	wxBoxSizer* AboutSizer;
 
 	//***************
 	//SETUP FUNCTIONS
 	//***************
+	void MakeNotebookTabs();
 	void CreateControls();
 	void BindControls();
 	void SetupSizers();
@@ -37,17 +63,12 @@ private:
 	//*****************
 	//CONTROL FUNCTIONS
 	//*****************
-	void OnTestButtonPressed(wxCommandEvent& evt);
-	 
-	//For navigation controls
-	void OnDashboardNavigaionPressed(wxCommandEvent& evt);
-	void OnHealthNavigaionPressed(wxCommandEvent& evt);
-	void OnDoctorsNavigaionPressed(wxCommandEvent& evt);
-	void OnSystemNavigaionPressed(wxCommandEvent& evt);
-	void OnAboutNavigaionPressed(wxCommandEvent& evt);
-
-	//For tab specific controls
-	
+	void OnTestButtonPressed(wxCommandEvent& evt)	{ wxLogMessage("Test button pressed"); }
+	void OnDashboardNavigaionPressed(wxCommandEvent& evt) { MainTabs->SetSelection(EWindows::Dashboard); }
+	void OnHealthNavigaionPressed(wxCommandEvent& evt) { MainTabs->SetSelection(EWindows::Health); }
+	void OnDoctorsNavigaionPressed(wxCommandEvent& evt) { MainTabs->SetSelection(EWindows::Doctors); }
+	void OnSystemNavigaionPressed(wxCommandEvent& evt) { MainTabs->SetSelection(EWindows::System); }
+	void OnAboutNavigaionPressed(wxCommandEvent& evt) { MainTabs->SetSelection(EWindows::About); }
 
 	//****************
 	//HELPER FUNCTIONS
@@ -70,12 +91,6 @@ private:
 	wxBoxSizer* systemSizer;
 	wxBoxSizer* aboutSizer;
 
-	//Navigation tab controls
-	wxStaticText* welcomeText;
-	wxButton* healthQuikControl;
-	wxButton* systemQuikControl;
-	wxButton* aboutQuikControl;
-
 	//Health tab controls
 	wxStaticText* healthTestText;
 
@@ -94,5 +109,9 @@ private:
 	wxButton* doctorsNavigationControl;
 	wxButton* systemNavigationControl;
 	wxButton* aboutNavigationControl;
+
+	// Fonts
+	wxFont TitleFont = wxFont(wxFontInfo(wxSize(0, 52)).Bold());
+	wxFont MainFont = wxFont(wxFontInfo(wxSize(0, 24)));
 };
 
